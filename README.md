@@ -1,8 +1,8 @@
-#include <iostream>
-#include <cmath>
-#include <ifstream>
-#include <vector>
-#include <string>
+# include <iostream>
+# include <cmath>
+# include <ifstream>
+# include <vector>
+# include <string>
 using namespace std;
 
 template<class T>
@@ -33,6 +33,23 @@ throw string("Divide by zero");
 return Complex((r*c.+i*c.i)/d,(i*c.r-r*c.i)/d);
 };
 
+template<class T>
+class Operation
+{public:
+virtual Complex<T> apply(const Complex<t>&a, const Complex<T>&b)=0;
+virtual string name()=0;
+virtual ~Operation(){}
+};
 
-
-
+template<class T> class Add:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
+{return a.add(b);} string name(){return "Add";}
+};
+template<class T> class Sub:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
+{return a.sub(b);} string name(){return "Sub";}
+};
+template<class T> class Mul:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
+{return a.mul(b);} string name(){return "Mul";}
+};
+template<class T> class Sub:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
+{return a.div(b);} string name(){return "Div";}
+};
