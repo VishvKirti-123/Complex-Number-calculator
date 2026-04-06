@@ -50,6 +50,58 @@ template<class T> class Sub:public Operation<T>{public:Complex<T> apply(const Co
 template<class T> class Mul:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
 {return a.mul(b);} string name(){return "Mul";}
 };
-template<class T> class Sub:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
+template<class T> class Div:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
 {return a.div(b);} string name(){return "Div";}
 };
+template<class T>
+class Advanced{
+public:
+static T magnitude(const Complex<T>&c){return sqrt(c.real()*c.real()+c.imag()*c.imag());}
+static Complex<T> conjugate(const Complex<T>&c)
+{return Complex<T>(c.real(),-c.imag());}
+static Complex<T> square(const Complex<T>&c)
+{return c.mul(c);}
+static Complex<T> cube(const Complex<T>&c)
+{return c.mul(c).mul(c);}
+static Complex<T> scale(const Complex<T>&c, Tk)
+{return Complex<T>(c.real()*k,c.imag()*k);}
+static Complex<T> negate(const Complex<T>&c)
+{return Complex<T>(-c.real(),-c.imag());}
+static Complex<T> rotate90(const Complex<T>&c)
+{return Complex<T>(-c.imag(),c.real());}
+static Complex<T> avg(const Complex<T>&a,const Complex<T>&b)
+{return Complex<T>((a.real()+b.real())/2,(a.imag()+b.imag())/2);}
+};
+
+template<class T>
+class History {
+vector<string>logs;
+public:
+void add(const string&s)
+{logs.push_back(s);}
+void show()
+{if(logs.emplty())
+{cout<<"No history\n"; 
+return;}
+for(size_t i=0;<logs.size();++i)
+{cout<<i+1<<"."<<logs[i]<<"\n";}}
+};
+template<class T>
+class FileManager
+{string file;
+public:
+FileManager(const string&f):file(f){}
+void saveLine(cons string&line){ofstream out(file.c_str(),ios::app);
+if(out)
+{out<<line<<"\n";}out.close():}
+void clear()
+{ofstream out(file.c_str());ot.close();}
+void showAll()
+{ifstreamin(file.c_str());
+string s;
+while(getline(in,s))
+{cout<<s<<"\n";}
+in.close();}
+};
+template<class T>
+classs
