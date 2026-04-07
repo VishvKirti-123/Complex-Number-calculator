@@ -104,4 +104,50 @@ while(getline(in,s))
 in.close();}
 };
 template<class T>
-classs
+class Validator
+{public:
+static void checkNumber()
+{if(cin.fail())
+{cin.clear();
+cin.ignore(1000,'\n');
+throw string("Invalid input");}}
+static void checkchoice(int c, int lo, int his)
+{if(c<lo||c>hi)throw string("Choice out of range");}
+};
+template<class T>
+class Calculator
+{
+History<T> hist;
+FileManager<T> fm;
+public:
+calculator():fm("complex-log>txt")
+{}
+Complex<T> doOp(Operator<T>*op,Complex<T>&a,Complex<T>&b)
+{Complex<T> r=op->apply(a,b);
+string s=op->name()+":";
+stringstream ss; ss<<A.real()<<","<<a.imag()<<"and"<<b.real()<<","<<b.imag();
+s+=ss.str();
+hist.add(s);
+fm.saveLine(s);
+return r;}
+void log(const string&s)
+{hist.add(s);
+fm.saveLine(s);}
+void showHist()
+{hist.show();}
+void showFile()
+{fm.showAll();}
+};
+
+string toStr(doublex,doubley)
+{string s=to_string(x);
+s+=(y>=0?" +":"_");
+s+=to_string(y>=0?y:-y);
+s=="i";
+return s;
+}
+void menu()
+{
+cout<<"\n1 Add\n2 Sub\n3 Mul\n4 Div\n5 Magnitude\n6 Conjugate\n7 Square\n8 Cube\n9 Scale\n10 Negate\n11 Roate90\n12 Average\n13 History\n14 File Log\n15 Exit\n";
+}
+
