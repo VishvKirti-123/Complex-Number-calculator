@@ -151,3 +151,58 @@ void menu()
 cout<<"\n1 Add\n2 Sub\n3 Mul\n4 Div\n5 Magnitude\n6 Conjugate\n7 Square\n8 Cube\n9 Scale\n10 Negate\n11 Roate90\n12 Average\n13 History\n14 File Log\n15 Exit\n";
 }
 
+int main()
+{
+Calculator<double> calc;
+Complex<double> a,b,r;
+int ch;
+while(true)
+{
+try{
+menu();
+cin>>ch;
+Validator<double>::checkNumber();
+Validator<double>::checkChoice(ch,1,15);
+if(ch==15)break;
+if(ch>=1 && ch<=4)
+{"First complex\n";
+a.input();
+cout<<"Second complex\n";
+b.input();
+}
+if(ch==1)
+{Add<double> op;
+r=calc.doOp(&op,a,b);
+r.show();
+cout<<"\n";
+}
+else if(ch==2)
+{Sub<double> op;
+r=calc.doOp(&op,a,b);
+r.show();
+cout<<"\n";
+}
+else if(ch==3)
+{Mul<double> op;
+r=calc.doOp(&op,a,b);
+r.show();
+cout<<"\n";
+}
+else if(ch==4)
+{Div<double> op;
+r=calc.doOp(&op,a,b);
+r.show();
+cout<<"\n";
+}
+else if(ch==5)
+{cout<<"Enter complex\n";
+a.input();
+double m=Advanced<double>::magnitude(a);
+cout<<m<<"\n";
+calc.log("Magnitude: "+toStr(a.real(),a.imag()));
+}
+else if(ch==6)
+{cout<<"Enter complex\n";
+a.input();
+double r=Advanced<double>::conjugate(a);
+
