@@ -41,20 +41,25 @@ virtual string name()=0;
 virtual ~Operation(){}
 };
 
-template<class T> class Add:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
+template<class T> 
+class Add:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
 {return a.add(b);} string name(){return "Add";}
 };
-template<class T> class Sub:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
+template<class T> 
+class Sub:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
 {return a.sub(b);} string name(){return "Sub";}
 };
-template<class T> class Mul:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
+template<class T> 
+class Mul:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
 {return a.mul(b);} string name(){return "Mul";}
 };
-template<class T> class Div:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
+template<class T> 
+class Div:public Operation<T>{public:Complex<T> apply(const Complex<T>&a,const Complex<T>&b)
 {return a.div(b);} string name(){return "Div";}
 };
 template<class T>
-class Advanced{
+class Advanced
+{
 public:
 static T magnitude(const Complex<T>&c){return sqrt(c.real()*c.real()+c.imag()*c.imag());}
 static Complex<T> conjugate(const Complex<T>&c)
@@ -205,4 +210,75 @@ else if(ch==6)
 {cout<<"Enter complex\n";
 a.input();
 double r=Advanced<double>::conjugate(a);
-
+r.show();
+cout<<"\n";
+clac.log("Conjugate: "+toStr(a.real()'a.imag()));
+}
+else if(ch==7)
+{cout<<"Enter complex\n";
+a.input();
+double r=Advanced<double>::square(a);
+r.show();
+cout<<"\n";
+clac.log("Square");
+}
+else if(ch==8)
+{cout<<"Enter complex\n";
+a.input();
+double r=Advanced<double>::cube(a);
+r.show();
+cout<<"\n";
+clac.log("Cube");
+}
+else if(ch==9)
+{cout<<"Enter complex\n";
+a.input();
+doublek;
+cout<<"k: ";
+cin>>k;
+Validator<double>::checkNumber();
+r=Advanced<double>::scale(a,k);
+r.show();
+cout<<"\n";
+calc.log("Scale");
+}
+else if(ch==10)
+{cout<<"Enter complex\n";
+a.input();
+r=Advanced<double>::negate(a);
+r.show();
+cout<<"\n";
+clac.log("Negate");
+}
+else if(ch==11)
+{cout<<"Enter complex\n";
+a.input();
+r=Advanced<double>::rotate90(a);
+r.show();
+cout<<"\n";
+clac.log("Rotate90");
+}
+else if(ch==12)
+{cout<<"Enter complex\n";
+a.input();
+cout<<"Second complex\n";
+b.input();
+r=Advanced<double>::avg(a,b);
+r.show();
+cout<<"\n";
+calc.log("Average");
+}
+else if(ch==13)
+{calc.showHist();
+}
+else if(ch==14)
+{calc.showFile();
+}
+}
+catch(const string&e)
+{cout<<"Error: "<<e<<"\n";}
+catch(...)
+{cout<<"Unknown error\n";}
+}
+return 0;
+}
